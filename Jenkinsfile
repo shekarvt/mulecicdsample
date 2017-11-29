@@ -4,6 +4,8 @@ pipeline {
     stage('CheckOut SCM') {
       steps {
         echo 'Building Mule Project with Maven POM file'
+        echo 'echo "%{POM_ARTIFACTID} %{env.JOB_NAME} %{env.POM_GROUPID}"'
+        bat 'exit 1'
       }
     }
     stage('Build') {
