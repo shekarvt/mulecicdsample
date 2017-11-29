@@ -10,6 +10,7 @@ pipeline {
       steps {
         echo 'Build code with Maven'
         bat 'mvn compile'
+        echo 'echo $POM_ARTIFACTID'
       }
     }
     stage('Run Tests') {
