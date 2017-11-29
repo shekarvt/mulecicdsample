@@ -8,45 +8,45 @@ pipeline {
     }
     stage('CodeAnalysis') {
       steps {
-         echo 'SonarQube-Static Code Analysis'
-         bat(script: 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.sources=. -Dsonar.projectKey=mulecicdsamplekey:master', returnStatus: true)         
-         waitForQualityGate()
+        echo 'SonarQube-Static Code Analysis'
+        bat(script: 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -DSonar.password=admin -Dsonar.sources=. -Dsonar.projectKey=mulecicdsamplekey:master', returnStatus: true)
+        waitForQualityGate()
       }
     }
     stage('Build') {
-        steps {
-          echo 'Build code with Maven'
-       }
+      steps {
+        echo 'Build code with Maven'
+      }
     }
     stage('Run Tests') {
-        parallel {
-          stage('Service') {
-            steps {
-              echo 'Run Tests'
-            }
+      parallel {
+        stage('Service') {
+          steps {
+            echo 'Run Tests'
           }
-          stage('Unit') {
-            steps {
-              echo 'Munit Unit Testing'
-              bat 'mvn test'
-            }
+        }
+        stage('Unit') {
+          steps {
+            echo 'Munit Unit Testing'
+            bat 'mvn test'
           }
-          stage('UI') {
-            steps {
-              echo 'Running UI Tests'
-            }
+        }
+        stage('UI') {
+          steps {
+            echo 'Running UI Tests'
           }
         }
       }
-      stage('Archive Artifacts') {
-        steps {
-          echo 'Archiving the Artifacts into JFrog Artifactory'
-        }
+    }
+    stage('Archive Artifacts') {
+      steps {
+        echo 'Archiving the Artifacts into JFrog Artifactory'
       }
-      stage('Package&Deploy') {
-        steps {
-          echo 'Deploy Mule app to CloudHub'
-        }
+    }
+    stage('Package&Deploy') {
+      steps {
+        echo 'Deploy Mule app to CloudHub'
       }
     }
   }
+}
