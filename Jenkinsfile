@@ -10,7 +10,7 @@ pipeline {
       steps {
         echo 'Build code with Maven'
         bat 'mvn compile'
-        echo 'echo ${POM_ARTIFACTID} ${env.JOB_NAME} ${env.POM_GROUPID}'
+        echo 'echo "${POM_ARTIFACTID} ${env.JOB_NAME} ${env.POM_GROUPID}"'
       }
     }
     stage('Run Tests') {
