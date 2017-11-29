@@ -49,5 +49,11 @@ pipeline {
         archiveArtifacts 'target/*.zip'
       }
     }
+    stage('Deploy') {
+      steps {
+        bat 'mvn package mule:deploy'
+        echo 'Deploy Mule app'
+      }
+    }
   }
 }
