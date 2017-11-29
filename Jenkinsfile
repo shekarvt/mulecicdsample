@@ -15,6 +15,7 @@ pipeline {
                 }
 	      waitForQualityGate()
       }
+    }
       stage('Build') {
         steps {
           echo 'Build code with Maven'
