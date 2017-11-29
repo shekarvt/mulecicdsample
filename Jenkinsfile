@@ -10,7 +10,7 @@ pipeline {
       steps {
         echo 'SonarQube-Static Code Analysis'
         bat(script: 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=admin -Dsonar.sources=. -Dsonar.projectKey=mulecicdsamplekey:master', returnStatus: true)
-        waitForQualityGate()
+        //waitForQualityGate()
       }
     }
     stage('Build') {
