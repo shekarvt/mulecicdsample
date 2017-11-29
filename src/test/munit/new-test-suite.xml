@@ -9,5 +9,6 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
     </spring:beans>
     <munit:test name="new-test-suite-mulecicdFlowTest" description="Test">
         <flow-ref name="mulecicdFlow" doc:name="Flow-ref to mulecicdFlow"/>
+        <munit:assert-on-equals expectedValue="#['mulecicd']" actualValue="#[payload]" doc:name="Assert Equals"/>
     </munit:test>
 </mule>
