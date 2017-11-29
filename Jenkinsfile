@@ -13,6 +13,7 @@ pipeline {
 mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.sources=. -Dsonar.projectKey=mulecicdsamplekey:master
 }'''
           waitForQualityGate()
+          echo 'Quality Gate Completed'
         }
       }
       stage('Build') {
