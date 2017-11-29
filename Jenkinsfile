@@ -4,16 +4,12 @@ pipeline {
     stage('CheckOut SCM') {
       steps {
         echo 'Building Mule Project with Maven POM file'
-        echo '%POM_ARTIFACTID% %JOB_NAME% %POM_GROUPID% %BUILD_ID% %BUILD_NUMBER%'
-        echo '${env.JOB_NAME}  ${env.BUILD_ID}'
-        bat 'exit 1'
       }
     }
     stage('Build') {
       steps {
         echo 'Build code with Maven'
         bat 'mvn compile'
-        echo 'echo "${POM_ARTIFACTID} ${JOB_NAME} ${BUILD_NUMBER}"'
       }
     }
     stage('Run Tests') {
