@@ -46,6 +46,8 @@ pipeline {
     }
     stage('Package&Deploy') {
       steps {
+        echo 'Package the application'
+        bat 'mvn package'
         echo 'Deploy Mule app to CloudHub'
       }
     }
