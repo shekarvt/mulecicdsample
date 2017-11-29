@@ -15,41 +15,40 @@ pipeline {
                 }
 	      waitForQualityGate()
       }
-    }
-    stage('Build') {
-      steps {
-        echo 'Build code with Maven'
-      }
-    }
-    stage('Run Tests') {
-      parallel {
-        stage('Service') {
-          steps {
-            echo 'Run Tests'
-          }
-        }
-        stage('Unit') {
-          steps {
-            echo 'Munit Unit Testing'
-            bat 'mvn test'
-          }
-        }
-        stage('UI') {
-          steps {
-            echo 'Running UI Tests'
-          }
+      stage('Build') {
+        steps {
+          echo 'Build code with Maven'
         }
       }
-    }
-    stage('Archive Artifacts') {
-      steps {
-        echo 'Archiving the Artifacts into JFrog Artifactory'
+      stage('Run Tests') {
+        parallel {
+          stage('Service') {
+            steps {
+              echo 'Run Tests'
+            }
+          }
+          stage('Unit') {
+            steps {
+              echo 'Munit Unit Testing'
+              bat 'mvn test'
+            }
+          }
+          stage('UI') {
+            steps {
+              echo 'Running UI Tests'
+            }
+          }
+        }
       }
-    }
-    stage('Package&Deploy') {
-      steps {
-        echo 'Deploy Mule app to CloudHub'
+      stage('Archive Artifacts') {
+        steps {
+          echo 'Archiving the Artifacts into JFrog Artifactory'
+        }
+      }
+      stage('Package&Deploy') {
+        steps {
+          echo 'Deploy Mule app to CloudHub'
+        }
       }
     }
   }
-}
