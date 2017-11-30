@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('CheckOut SCM') {
       steps {
-        echo 'Building Mule Project with Maven POM file'
+        echo 'Building Mule Project with Maven POM file - DEMO'
       }
     }
     stage('Build') {
