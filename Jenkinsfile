@@ -30,6 +30,11 @@ pipeline {
             echo 'Running UI Tests'
           }
         }
+        stage('functional Test') {
+          steps {
+            echo 'Placeholder for Function Test'
+          }
+        }
       }
     }
     stage('CodeAnalysis') {
